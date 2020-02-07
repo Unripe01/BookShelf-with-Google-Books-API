@@ -69,7 +69,7 @@
                             <asp:BoundField DataField="Location" HeaderText="保管場所" ItemStyle-Width="100" SortExpression="Location">
                             <ItemStyle Width="100px" />
                             </asp:BoundField>
-                            <asp:BoundField DataField="InsertDatetime" DataFormatString="{0:d}" HeaderText="登録日">
+                            <asp:BoundField DataField="InsertDatetime" DataFormatString="{0:d}" HeaderText="登録日" SortExpression="InsertDatetime">
                             <HeaderStyle Width="90px" />
                             </asp:BoundField>
                             <asp:TemplateField HeaderText="削除" >
