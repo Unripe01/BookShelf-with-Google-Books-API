@@ -71,23 +71,33 @@ public class GoogleBooksAPIs
     {
         Books books = new Books();
 
-        //(arr)item の配列0個目 = object として取得
-        JObject items = (JObject)obj_json["items"][0];
-        books.Author = ((JArray)(items["volumeInfo"]["authors"]))[0].ToString();
-        books.Disposal = false;
-        books.DetailPageURL = ((JValue)(items["volumeInfo"]["infoLink"])).Value.ToString();
-        books.EAN = "";
-        books.ISBN = ((JValue)(items["volumeInfo"]["industryIdentifiers"][0]["identifier"])).Value.ToString();
-        books.ListPrice = null;
-        books.Location = "";
-        books.MediumImageURL = ((JValue)(items["volumeInfo"]["imageLinks"]["thumbnail"])).Value.ToString();
-        books.PublicationDateString = ((JValue)(items["volumeInfo"]["publishedDate"])).Value.ToString();
-        books.Publisher = "";
-        books.Title = ((JValue)(items["volumeInfo"]["title"])).Value.ToString();
-        books.TinyImageURL = ((JValue)(items["volumeInfo"]["imageLinks"]["smallThumbnail"])).Value.ToString();
-        
-        books.InsertDatetime = DateTime.Now;
+        try
+        {
+            //(arr)item の配列0個目 = object として取得
+            JObject items = (JObject)obj_json["items"][0];
+            books.Author = ((JArray)(items["volumeInfo"]["authors"]))[0].ToString();
+            books.Disposal = false;
+            books.DetailPageURL = ((JValue)(items["volumeInfo"]["infoLink"])).Value.ToString();
+            books.ISBN = ((JValue)(items["volumeInfo"]["industryIdentifiers"][0]["identifier"])).Value.ToString();
+            books.EAN = ((JValue)(items["volumeInfo"]["industryIdentifiers"][1]["identifier"])).Value.ToString();
+            books.ListPrice = null;
+            books.Location = "";
+            books.PublicationDateString = ((JValue)(items["volumeInfo"]["publishedDate"])).Value.ToString();
+            books.Publisher = "";
+            books.Title = ((JValue)(items["volumeInfo"]["title"])).Value.ToString();
 
+            var img = ((JValue)(items["volumeInfo"]["imageLinks"]["smallThumbnail"])).Value.ToString();
+            books.TinyImageURL = img == "" ? null : img;
+
+            var img2 = ((JValue)(items["volumeInfo"]["imageLinks"]["thumbnail"])).Value.ToString();
+            books.MediumImageURL = img2 == "" ? null : img2;
+
+            books.InsertDatetime = DateTime.Now;
+        }
+        catch
+        {
+            throw new HttpParseException("書籍情報が取得できない。");
+        }
         return books;
     }
 

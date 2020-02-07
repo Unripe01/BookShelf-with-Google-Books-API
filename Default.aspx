@@ -13,7 +13,8 @@
     <h1>書籍一覧</h1>
     <div><p>メニュー</p>
         <asp:HyperLink ID="HyperLinkSearch" runat="server">検索</asp:HyperLink>
-        <asp:HyperLink ID="HyperLinkRegist" runat="server" NavigateUrl="~/GoogleRegister.aspx">登録</asp:HyperLink>
+        <asp:HyperLink ID="HyperLinkRegist" runat="server" NavigateUrl="~/GoogleRegister.aspx">登録（Google）</asp:HyperLink>
+        <asp:HyperLink ID="HyperLinkRegistNDL" runat="server" NavigateUrl="~/NDLRegister.aspx">登録（NDL）</asp:HyperLink>
     </div>
 
     <form id="form1" runat="server">
@@ -68,14 +69,19 @@
                             <asp:BoundField DataField="Location" HeaderText="保管場所" ItemStyle-Width="100" SortExpression="Location">
                             <ItemStyle Width="100px" />
                             </asp:BoundField>
-<%--                            <asp:TemplateField HeaderText="削除">
+                            <asp:BoundField DataField="InsertDatetime" DataFormatString="{0:d}" HeaderText="登録日">
+                            <HeaderStyle Width="90px" />
+                            </asp:BoundField>
+                            <asp:TemplateField HeaderText="削除" >
                                 <ItemTemplate>
                                     <asp:Button runat="server" CausesValidation="false" 
                                         CommandName="Delete" 
                                         OnClientClick="return confirm('本当に削除しますか？');" 
-                                        Text="削除" />
+                                        Text="削除"
+                                         />
                                 </ItemTemplate>
-                            </asp:TemplateField>--%>
+                                <HeaderStyle Width="50px" />
+                            </asp:TemplateField>
                         </Columns>
                         <AlternatingRowStyle BackColor="White" />
                         <FooterStyle BackColor="#CCCC99" />

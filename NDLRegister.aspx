@@ -1,5 +1,5 @@
 ﻿<%@ Page Language="C#" Theme="Theme1"
-    AutoEventWireup="true" CodeFile="GoogleRegister.aspx.cs" Inherits="GoogleRegister" %>
+    AutoEventWireup="true" CodeFile="NDLRegister.aspx.cs" Inherits="NDLRegister" %>
 
 <!DOCTYPE html>
 
@@ -16,11 +16,11 @@
 
 </head>
 <body>
-    <h1>書籍登録（Google Books APIs）</h1>
+    <h1>書籍登録（NDL）</h1>
     <div><p>メニュー</p>
         <asp:HyperLink ID="HyperLinkSearch" runat="server" NavigateUrl="~/Default.aspx">検索</asp:HyperLink>
-        <asp:HyperLink ID="HyperLinkRegist" runat="server">登録（Google）</asp:HyperLink>
-        <asp:HyperLink ID="HyperLinkRegistNDL" runat="server" NavigateUrl="~/NDLRegister.aspx">登録（NDL）</asp:HyperLink>
+        <asp:HyperLink ID="HyperLinkRegist" runat="server" NavigateUrl="~/GoogleRegister.aspx">登録（Google）</asp:HyperLink>
+        <asp:HyperLink ID="HyperLinkRegistNDL" runat="server">登録（NDL）</asp:HyperLink>
     </div>
 
     <form id="form1" runat="server">

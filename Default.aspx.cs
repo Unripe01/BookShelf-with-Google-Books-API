@@ -7,10 +7,16 @@ using System.Web.UI.WebControls;
 
 public partial class _Default : System.Web.UI.Page
 {
+    private bool _admin = false;
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        
+        //管理者モードの確認
+        string admin = Request.QueryString["admin"] as string;
+        if (admin == "true")
+        {
+            _admin = true;
+        }
     }
 
     /// <summary>
@@ -51,6 +57,8 @@ public partial class _Default : System.Web.UI.Page
                 e.Row.TableSection = TableRowSection.TableFooter;   // tfootを出力
                 break;
         }
+        //管理者権限列の制御
+        e.Row.Cells[10].Visible = _admin;
     }
 
     /// <summary>
